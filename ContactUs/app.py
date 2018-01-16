@@ -32,9 +32,9 @@ def submitRequest():
 #    formData['messagedate'] = input_data.get('messagedate')
     
     ContactUsObj = ContactUs() 
-    ContactUsObj.submitRequest(formData) 
+    requestResponse = ContactUsObj.submitRequest(formData) 
     
-    
+    return jsonify({"Message":requestResponse})
     
     
 if __name__ == '__main__':

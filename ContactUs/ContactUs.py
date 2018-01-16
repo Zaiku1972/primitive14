@@ -14,9 +14,11 @@ class ContactUs(object):
     def submitRequest(self,messageRequest): 
         try:
             with self.connection as cursor: 
-                sql = "INSERT INTO `contactus` (firstName,lastName,mobileNo,message) VALUE (%s,%s)"
+                sql = "INSERT INTO `contactus` (firstName,lastName,mobileNo,message) VALUE (%s,%s,%s,%s)"
                 cursor.execute(sql,(messageRequest['firstName'],messageRequest['lastName'],messageRequest['mobileNo'],messageRequest['message']))
+                return "Request Submitted"
         except Exception as e: 
+            return str(e)
             print(e) 
 
         
