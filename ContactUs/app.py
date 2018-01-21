@@ -12,29 +12,41 @@ from flask import Flask,jsonify
 from flask import request
 from ContactUs import ContactUs
 app = Flask(__name__) 
+import addition 
 
 
-@app.route('/submitRequest',methods=['POST']) 
+#@app.route('/submitRequest',methods=['POST']) 
+#
+#def submitRequest(): 
+#    #message data from front end 
+#    #data format JSON 
+#    
+#    input_data = request.get_json(force=True) 
+#    formData = dict() 
+#    
+#    formData['firstName'] = input_data.get('firstName')
+#    formData['lastName'] = input_data.get('lastName')
+##    formData['email'] = input_data.get('email')
+#    formData['mobileNo'] = input_data.get('mobileNo')
+##    formData['ipaddress'] = input_data.get('ipaddress')
+#    formData['message'] = input_data.get('message')
+##    formData['messagedate'] = input_data.get('messagedate')
+#    
+#    ContactUsObj = ContactUs() 
+#    requestResponse = ContactUsObj.submitRequest(formData) 
+#    
+#    return jsonify({"Message":requestResponse})
 
-def submitRequest(): 
-    #message data from front end 
-    #data format JSON 
+@app.route('/addition',methods=['POST']) 
+def add(): 
+    input_data = request.get_json(force=True)  
+    a = int(input_data.get('a')) 
+    b = int(input_data.get('b')) 
     
-    input_data = request.get_json(force=True) 
-    formData = dict() 
+    result = addition.addition(a,b) 
     
-    formData['firstName'] = input_data.get('firstName')
-    formData['lastName'] = input_data.get('lastName')
-#    formData['email'] = input_data.get('email')
-    formData['mobileNo'] = input_data.get('mobileNo')
-#    formData['ipaddress'] = input_data.get('ipaddress')
-    formData['message'] = input_data.get('message')
-#    formData['messagedate'] = input_data.get('messagedate')
-    
-    ContactUsObj = ContactUs() 
-    requestResponse = ContactUsObj.submitRequest(formData) 
-    
-    return jsonify({"Message":requestResponse})
+    return jsonify({"Result":result})
+        
     
     
 if __name__ == '__main__':
